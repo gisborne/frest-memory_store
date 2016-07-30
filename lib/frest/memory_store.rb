@@ -1,43 +1,37 @@
 require "frest/memory_store/version"
 require 'frest/core'
-require_relative 'tap_h'
 
 module Frest
   module MemoryStore
-    include TapH
-
     extend self
 
     @@store = Hash.new(Frest::Core::NotFound)
 
-    tap_h def set(
+     def set(
         id:,
         content:,
-        c_:,
-        **_)
+        **c)
 
-      hash = final_hash(**c_)
+      hash = final_hash(**c)
 
       hash[id] = content
     end
 
-    tap_h def delete(
+     def delete(
         id:,
-        c_:,
-        **_)
+        **c)
 
-      hash = final_hash(**c_)
+      hash = final_hash(**c)
 
       hash.delete(id)
     end
 
 
-    tap_h def get(
+     def get(
         id:,
-        c_:,
-        **_)
+        **c)
 
-      hash = final_hash(**c_)
+      hash = final_hash(**c)
 
       hash[id]
     end
@@ -52,7 +46,7 @@ module Frest
     def final_hash(
       store_id: 'default',
       branch_id: 'default',
-      **_
+      **c
     )
 
       @@store[branch_id] = Hash.new{Frest::Core::NotFound} if @@store[branch_id] == Frest::Core::NotFound

@@ -7,21 +7,24 @@ module Frest
 
     @@store = Hash.new(Frest::Core::NotFound)
 
-   def set(
-    id:,
-    content:,
-    **c
-   )
 
-    hash = final_hash(**c)
+    module_function
 
-    hash[id] = content
-  end
+    def set(
+      id:,
+      content:,
+      **c
+    )
 
-     def delete(
-        id:,
-        **c
-     )
+      hash = final_hash(**c)
+
+      hash[id] = content
+    end
+
+    def delete(
+      id:,
+      **c
+    )
 
       hash = final_hash(**c)
 
@@ -29,10 +32,10 @@ module Frest
     end
 
 
-     def get(
-        id:,
-        **c
-     )
+    def get(
+      id:,
+      **c
+    )
 
       hash = final_hash(**c)
 

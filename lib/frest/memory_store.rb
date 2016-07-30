@@ -3,12 +3,10 @@ require 'frest/core'
 
 module Frest
   module MemoryStore
-    extend self
-
-    @@store = Hash.new(Frest::Core::NotFound)
-
 
     module_function
+
+    @@store = Hash.new(Frest::Core::NotFound)
 
     def set(
       id:,
@@ -31,7 +29,6 @@ module Frest
       hash.delete(id)
     end
 
-
     def get(
       id:,
       **c
@@ -43,7 +40,6 @@ module Frest
     end
 
 
-    private
 
     def uuid
       SecureRandom.uuid
